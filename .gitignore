@@ -1,3 +1,6 @@
 __pycache__/
 env.py
 db.sqlite3
+__pycache__
+migrations
+frontend/node_modules
