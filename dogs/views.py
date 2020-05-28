@@ -9,6 +9,16 @@ class BreedListCreate(generics.ListCreateAPIView):
     serializer_class = BreedSerializer
 
 
+class BreedDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Breed.objects.all()
+    serializer_class = BreedSerializer
+
+
 class ColorListCreate(generics.ListCreateAPIView):
+    queryset = Color.objects.all()
+    serializer_class = ColorSerializer
+
+
+class ColorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Color.objects.all()
     serializer_class = ColorSerializer
