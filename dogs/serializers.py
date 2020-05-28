@@ -1,19 +1,19 @@
 from rest_framework import fields, serializers
-from .models import Breed
+from .models import Breed, Color
 
-
-COLORS = (
-    ('Grey', 'Grey'),
-    ('White', 'White'),
-    ('Black', 'Black'),
-    ('Brown', 'Brown'),
-)
 
 
 
 class BreedSerializer(serializers.ModelSerializer):
-    colors = fields.MultipleChoiceField(choices=COLORS)
+    colors = serializers.SlugRelatedField(many=True, slug_field="color", queryset=Color.objects.all())
+
     class Meta:
         model = Breed
         fields = ('breed_name', 'description', 'history', 'origin', 'colors',
                   'temperament', 'lifespan', 'avg_weight', 'avg_height')
+
+
+class ColorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Color
+        fields = ('color',)
