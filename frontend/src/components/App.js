@@ -23,6 +23,7 @@ class App extends Component {
       })
       .then(data => {
         this.setState(() => {
+          console.log(data);
           return {
             data,
             loaded: true
@@ -37,8 +38,14 @@ class App extends Component {
         {this.state.data.map(breed => {
           return (
             <li key={breed.id}>
-              {breed.breed_name} - {breed.description} {breed.history} 
-              The average height is {breed.avg_height}. The most common colors are {breed.colors}.
+              {breed.breed_name} - {breed.description}. {breed.history}.  
+              The average height is {breed.avg_height}. The most common colors are {breed.colors.map(color => {
+                return (
+                  <span key={color.id}>
+                  {color}, 
+                  </span>
+                )
+              })}.
             </li>
           );
         })}
