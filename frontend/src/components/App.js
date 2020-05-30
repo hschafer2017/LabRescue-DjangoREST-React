@@ -12,30 +12,34 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("api/breed")
-      .then(response => {
-        if (response.status > 400) {
+    Promise.all([
+      fetch("api/breed"),
+      fetch("api/dog")
+    ])
+      .then(([res1, res2]) => {
+        if (res1.status > 400 && res2.status > 400) {
           return this.setState(() => {
             return { placeholder: "Something went wrong!" };
           });
         }
-        return response.json();
+        return Promise.all([res1.json(), res2.json()])
       })
-      .then(data => {
+      .then(([res1, res2]) => {
         this.setState(() => {
-          console.log(data);
           return {
-            data,
+            res1,
+            res2,
             loaded: true
           };
         });
       });
+
   }
 
   render() {
     return (
       <ul>
-        {this.state.data.map(breed => {
+        {this.state.res1.map(breed => {
           return (
             <li key={breed.id}>
               {breed.breed_name} - {breed.description}. {breed.history}.  
