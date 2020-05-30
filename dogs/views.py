@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Breed, Color
-from .serializers import BreedSerializer, ColorSerializer
+from .models import Breed, Color, Dog
+from .serializers import BreedSerializer, ColorSerializer, DogSerializer
 from rest_framework import generics
 
 
@@ -22,3 +22,13 @@ class ColorListCreate(generics.ListCreateAPIView):
 class ColorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Color.objects.all()
     serializer_class = ColorSerializer
+
+
+class DogListCreate(generics.ListCreateAPIView):
+    queryset = Dog.objects.all()
+    serializer_class = DogSerializer
+
+
+class DogDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Dog.objects.all()
+    serializer_class = DogSerializer
