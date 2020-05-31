@@ -26,3 +26,20 @@ class Tags(models.Model):
 
     def __str__(self):
         return self.tag
+
+
+class Answer(models.Model):
+    author = models.CharField(max_length=200)
+    content = models.TextField(blank=False)
+    date = models.DateField(
+        blank=True, null=True, default=timezone.now)
+    dog_owner = models.BooleanField(null=True)
+    question = models.ForeignKey(
+        'Question', on_delete=models.CASCADE, related_name='breed')
+
+    class Meta:
+        unique_together = ('question', 'content')
+        ordering = ['question']
+
+    def __str__(self):
+        return f'{self.date}: {self.author} - {self.question.title}'

@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dogs.apps.DogsConfig',
     'rest_framework',
-    'frontend'
+    'frontend',
+    'questions.apps.QuestionsConfig',
 ]
 
 MIDDLEWARE = [
