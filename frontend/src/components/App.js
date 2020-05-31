@@ -5,7 +5,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      breeds: [],
+      dogs: [],
       loaded: false,
       placeholder: "Loading"
     };
@@ -16,30 +17,18 @@ class App extends Component {
       fetch("api/breed"),
       fetch("api/dog")
     ])
-      .then(([res1, res2]) => {
-        if (res1.status > 400 && res2.status > 400) {
-          return this.setState(() => {
-            return { placeholder: "Something went wrong!" };
-          });
-        }
-        return Promise.all([res1.json(), res2.json()])
-      })
-      .then(([res1, res2]) => {
-        this.setState(() => {
-          return {
-            res1,
-            res2,
-            loaded: true
-          };
-        });
-      });
+    .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+    .then(([data1, data2]) => this.setState({
+        breeds: data1, 
+        dogs: data2
+    }));
 
   }
 
   render() {
     return (
       <ul>
-        {this.state.res1.map(breed => {
+        {this.state.breeds.map(breed => {
           return (
             <li key={breed.id}>
               {breed.breed_name} - {breed.description}. {breed.history}.  
@@ -48,13 +37,28 @@ class App extends Component {
                   <span key={color.id}>
                   {color}, 
                   </span>
-                )
+                );
               })}.
             </li>
           );
         })}
+        {this.state.dogs.map(dog => {
+          return (
+            <li key={dog.id}>
+              {dog.name} - {dog.breed}. {dog.description}.
+                Gender: {dog.gender}. Colors: {dog.colors.map(color => {
+                  return (
+                    <span key={color.id}>
+                    {color}, 
+                    </span>
+                );
+              })}.
+              Spayed: {dog.spayed_neutered}.
+            </li>
+          );
+        })}
       </ul>
-    );
+    )
   }
 }
 
