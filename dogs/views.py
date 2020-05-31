@@ -5,7 +5,7 @@ from rest_framework import generics
 
 
 class BreedListCreate(generics.ListCreateAPIView):
-    queryset = Breed.objects.all()
+    queryset = Breed.objects.order_by('breed_name')
     serializer_class = BreedSerializer
 
 
@@ -15,7 +15,7 @@ class BreedDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ColorListCreate(generics.ListCreateAPIView):
-    queryset = Color.objects.all()
+    queryset = Color.objects.order_by('color')
     serializer_class = ColorSerializer
 
 
@@ -25,7 +25,7 @@ class ColorDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class DogListCreate(generics.ListCreateAPIView):
-    queryset = Dog.objects.all()
+    queryset = Dog.objects.order_by('name')
     serializer_class = DogSerializer
 
 
