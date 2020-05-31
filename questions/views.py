@@ -1,12 +1,23 @@
 from django.shortcuts import render
 from .models import Question, Tags, Answer
 from .serializers import QuestionSerializer, TagsSerializer, AnswerSerializer
-from rest_framework import generics
+from rest_framework import generics, viewsets, response
 
 
 class QuestionListCreate(generics.ListCreateAPIView):
     queryset = Question.objects.order_by('-date')
     serializer_class = QuestionSerializer
+
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    serializer_class = QuestionSerializer
+    queryset=Question.objects.order_by('-date')
+
+    def retrieve(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.view_count = obj.view_count + 1
+        obj.save(update_fields=("view_count", ))
+        return super().retrieve(request, *args, **kwargs)
 
 
 class QuestionDetail(generics.RetrieveUpdateDestroyAPIView):

@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils import timezone
+import datetime
 
 
 
@@ -8,8 +8,7 @@ class Question(models.Model):
     author = models.CharField(max_length=200)
     content = models.TextField(blank=False)
     dog_owner = models.BooleanField(null=True)
-    date = models.DateField(
-        blank=True, null=True, default=timezone.now)
+    date = models.DateField(default=datetime.date.today)
     view_count = models.IntegerField(default=0)
 
     def __str__(self):
@@ -31,8 +30,7 @@ class Tags(models.Model):
 class Answer(models.Model):
     author = models.CharField(max_length=200)
     content = models.TextField(blank=False)
-    date = models.DateField(default=timezone.now,
-        blank=True, null=True)
+    date = models.DateField(default=datetime.date.today)
     dog_owner = models.BooleanField(null=True)
     question = models.ForeignKey(
         'Question', on_delete=models.CASCADE, related_name='answer')
