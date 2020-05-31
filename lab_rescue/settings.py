@@ -41,10 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dogs.apps.DogsConfig',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'dogs.apps.DogsConfig',
     'frontend',
     'questions.apps.QuestionsConfig',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -106,6 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
 # REST_FRAMEWORK = {
