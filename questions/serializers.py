@@ -26,10 +26,10 @@ class AnswerSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
     tags = serializers.SlugRelatedField(
         many=True, slug_field="tag", queryset=Tags.objects.all())
-    answer = AnswerSerializer(many=True, read_only=True)
+    answers = AnswerSerializer(source='answer', read_only=True, many=True)
     
 
     class Meta:
         model = Question
         fields = ('title', 'author', 'content', 'dog_owner', 'date',
-            'view_count', 'tags', 'answer')
+            'view_count', 'tags', 'answers')

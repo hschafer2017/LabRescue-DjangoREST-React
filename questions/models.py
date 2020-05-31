@@ -31,11 +31,11 @@ class Tags(models.Model):
 class Answer(models.Model):
     author = models.CharField(max_length=200)
     content = models.TextField(blank=False)
-    date = models.DateField(
-        blank=True, null=True, default=timezone.now)
+    date = models.DateField(default=timezone.now,
+        blank=True, null=True)
     dog_owner = models.BooleanField(null=True)
     question = models.ForeignKey(
-        'Question', on_delete=models.CASCADE, related_name='breed')
+        'Question', on_delete=models.CASCADE, related_name='answer')
 
     class Meta:
         unique_together = ('question', 'content')
