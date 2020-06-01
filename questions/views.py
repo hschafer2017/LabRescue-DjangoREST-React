@@ -1,12 +1,18 @@
 from django.shortcuts import render
 from .models import Question, Tags, Answer
 from .serializers import QuestionSerializer, TagsSerializer, AnswerSerializer
-from rest_framework import generics, viewsets, response
+from rest_framework import generics, viewsets, response, serializers
 
 
 class QuestionListCreate(generics.ListCreateAPIView):
     queryset = Question.objects.order_by('-date')
     serializer_class = QuestionSerializer
+    author = serializers.PrimaryKeyRelatedField(
+        read_only=True,
+    )
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
@@ -38,6 +44,12 @@ class TagDetail(generics.RetrieveUpdateDestroyAPIView):
 class AnswerListCreate(generics.ListCreateAPIView):
     queryset = Answer.objects.order_by('-date')
     serializer_class = AnswerSerializer
+    author = serializers.PrimaryKeyRelatedField(
+        read_only=True,
+    )
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 
 class AnswerDetail(generics.ListCreateAPIView):

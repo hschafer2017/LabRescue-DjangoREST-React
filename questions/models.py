@@ -1,11 +1,13 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 import datetime
 
+User = get_user_model()
 
 
 class Question(models.Model):
     title = models.CharField(max_length=200)
-    author = models.CharField(max_length=200)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(blank=False)
     dog_owner = models.BooleanField(null=True)
     date = models.DateField(default=datetime.date.today)
@@ -28,7 +30,7 @@ class Tags(models.Model):
 
 
 class Answer(models.Model):
-    author = models.CharField(max_length=200)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(blank=False)
     date = models.DateField(default=datetime.date.today)
     dog_owner = models.BooleanField(null=True)
