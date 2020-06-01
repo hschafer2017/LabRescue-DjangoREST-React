@@ -12,10 +12,8 @@ class TagsSerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=Question.objects.all())
-    author = serializers.PrimaryKeyRelatedField(
-    read_only=True, 
-    default=serializers.CurrentUserDefault()
-)
+    author = serializers.PrimaryKeyRelatedField(read_only=True,
+        default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Answer
@@ -32,7 +30,8 @@ class QuestionSerializer(serializers.ModelSerializer):
     tags = serializers.SlugRelatedField(
         many=True, slug_field="tag", queryset=Tags.objects.all())
     answers = AnswerSerializer(source='answer', read_only=True, many=True)
-    author = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    author = serializers.PrimaryKeyRelatedField(
+        read_only=True, default=serializers.CurrentUserDefault())
     
 
     class Meta:

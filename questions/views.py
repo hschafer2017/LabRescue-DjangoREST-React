@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from .models import Question, Tags, Answer
 from .serializers import QuestionSerializer, TagsSerializer, AnswerSerializer
-from rest_framework import generics, viewsets, response, serializers
-
+from rest_framework import generics, viewsets, response, serializers, permissions
+# from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .permissions import IsOwnerOrReadOnly
 
 class QuestionListCreate(generics.ListCreateAPIView):
     queryset = Question.objects.order_by('-date')
     serializer_class = QuestionSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     author = serializers.PrimaryKeyRelatedField(
         read_only=True,
     )
@@ -29,21 +31,25 @@ class QuestionViewSet(viewsets.ModelViewSet):
 class QuestionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
 
 class TagListCreate(generics.ListCreateAPIView):
     queryset = Tags.objects.order_by('tag')
     serializer_class = TagsSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class TagDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Tags.objects.all()
     serializer_class = TagsSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class AnswerListCreate(generics.ListCreateAPIView):
     queryset = Answer.objects.order_by('-date')
     serializer_class = AnswerSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     author = serializers.PrimaryKeyRelatedField(
         read_only=True,
     )
@@ -55,3 +61,4 @@ class AnswerListCreate(generics.ListCreateAPIView):
 class AnswerDetail(generics.ListCreateAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
