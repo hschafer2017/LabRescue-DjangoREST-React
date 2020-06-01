@@ -2,8 +2,7 @@ from django.shortcuts import render
 from .models import Question, Tags, Answer
 from .serializers import QuestionSerializer, TagsSerializer, AnswerSerializer
 from rest_framework import generics, viewsets, response, serializers, permissions
-# from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from .permissions import IsOwnerOrReadOnly
+from accounts.permissions import IsOwnerAdminOrReadOnly
 
 class QuestionListCreate(generics.ListCreateAPIView):
     queryset = Question.objects.order_by('-date')
@@ -31,7 +30,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
 class QuestionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerAdminOrReadOnly)
 
 
 class TagListCreate(generics.ListCreateAPIView):
@@ -61,4 +60,4 @@ class AnswerListCreate(generics.ListCreateAPIView):
 class AnswerDetail(generics.ListCreateAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerAdminOrReadOnly)
