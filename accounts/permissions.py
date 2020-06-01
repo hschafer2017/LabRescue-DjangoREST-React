@@ -16,3 +16,8 @@ class IsOwnerAdminOrReadOnly(permissions.BasePermission):
 
         # Write permissions are only allowed to the author of the object.
         return obj.author == request.user
+
+
+class IsAdmin(permissions.IsAdminUser):
+    def has_permission(self, request, view):
+        return bool(request.user and request.user.is_superuser)
