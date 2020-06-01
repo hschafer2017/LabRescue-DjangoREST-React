@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils import timezone
+import datetime
 
 class Breed(models.Model):
     breed_name = models.CharField(max_length=200)
@@ -27,8 +27,7 @@ class Dog(models.Model):
     description = models.TextField()
     spayed_neutered = models.BooleanField(null=True)
     image = models.ImageField(upload_to='')
-    uploaded_date = models.DateField(
-        blank=True, null=True, default=timezone.now)
+    uploaded_date = models.DateField(default=datetime.date.today)
     breed = models.ForeignKey(
         'Breed', on_delete=models.CASCADE, related_name='breed')
 

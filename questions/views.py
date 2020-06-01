@@ -30,7 +30,8 @@ class QuestionViewSet(viewsets.ModelViewSet):
 class QuestionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerAdminOrReadOnly)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerAdminOrReadOnly)
 
 
 class TagListCreate(generics.ListCreateAPIView):
@@ -60,4 +61,5 @@ class AnswerListCreate(generics.ListCreateAPIView):
 class AnswerDetail(generics.ListCreateAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerAdminOrReadOnly)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerAdminOrReadOnly)
