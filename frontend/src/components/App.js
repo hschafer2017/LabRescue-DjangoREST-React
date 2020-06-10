@@ -54,6 +54,7 @@ class App extends Component {
                 );
               })}.
               Spayed: {dog.spayed_neutered}.
+              <img src={dog.image} width="184" height="75" alt="Dog"/>
             </li>
           );
         })}
