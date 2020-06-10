@@ -58,7 +58,7 @@ class AnswerListCreate(generics.ListCreateAPIView):
         serializer.save(author=self.request.user)
 
 
-class AnswerDetail(generics.ListCreateAPIView):
+class AnswerDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
