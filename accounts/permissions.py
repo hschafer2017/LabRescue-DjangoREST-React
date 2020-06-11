@@ -5,15 +5,13 @@ class IsOwnerAdminOrReadOnly(permissions.BasePermission):
     """
     Custom permission to only allow super users or authors of an object to edit it.
     """
-
     def has_object_permission(self, request, view, obj):
         is_admin = super().has_permission(request, view)
         # Read permissions are allowed to any request,
         # so we'll always allow GET, HEAD or OPTIONS requests.
         # If authenticated user is a super user, they can update the object
-        if request.method in permissions.SAFE_METHODS or is_admin:
+        if request.method in permissions.SAFE_METHODS and is_admin:
             return True
-
         # Else, update permissions are only allowed to the object's author.
         return obj.author == request.user
 
