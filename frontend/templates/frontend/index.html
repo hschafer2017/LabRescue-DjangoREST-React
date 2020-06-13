@@ -8,16 +8,16 @@
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
         crossorigin="anonymous"
-    />
+        />
         <title>Django REST with React</title>
+        {% load account %}
+        {% load static %}
     </head>
     <body>
-        {% load account %}
         <div id="navbar"></div>
         <div id="app"> -->
             <!-- React will load here -->
         </div>
+        <script src="{% static "frontend/main.js" %}"></script>
     </body>
-    {% load static %}
-    <script src="{% static "frontend/main.js" %}"></script>
 </html>
