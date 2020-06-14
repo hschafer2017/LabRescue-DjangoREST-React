@@ -14,38 +14,40 @@ class NavBar extends Component {
             loaded: false,
             placeholder: "Loading"
         };
-
     };
-      componentDidMount() {
+    componentDidMount() {
         fetch("rest-auth/user")
         .then(response => {
             if (response.status > 400) {
-                loginButton = <Nav.Link href="accounts/login">Login</Nav.Link>;
-                return loginButton;
-            }
-            loginButton = <Nav.Link href="accounts/logout">Logout</Nav.Link>;
+                return response;
+            };
             return response.json();
-          })
-          .then(users => {
+        })
+        .then(users => {
+            if (users.username !== undefined) {
+                loginButton = <Nav.Link href="accounts/logout">Logout, {users.username}</Nav.Link>;
+            } else {
+                loginButton = <Nav.Link href="accounts/login">Login</Nav.Link>;
+            };
             this.setState(() => {
-              return {
-                users,
-                loaded: true
-              };
+                return {
+                    users,
+                    loaded: true
+                };
             });
-          });
-      };
+        });
+    };
 
     render () {
         return (
-            <Navbar bg='light' variant='light'>
-                <Navbar.Brand href="#home">Lab Rescue</Navbar.Brand>
-                <Navbar.Toggle />
-                <Navbar.Collapse className="justify-content-end">
-                    <Navbar.Text>
-                        {this.state.users.username}
-                    </Navbar.Text>
-                    <Nav className="mr-auto">
+            <Navbar bg='light' variant='light' expand='lg'>
+                <Navbar.Brand href="/">Lab Rescue</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ml-auto">
+                        <Nav.Link href="#">Dogs</Nav.Link>
+                        <Nav.Link href="#">Breeds</Nav.Link>
+                        <Nav.Link href="#">FAQs</Nav.Link>
                         {loginButton}
                     </Nav>
                 </Navbar.Collapse>
