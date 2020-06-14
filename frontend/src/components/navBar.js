@@ -6,6 +6,11 @@ import regeneratorRuntime from "regenerator-runtime";
 
 let loginButton;
 
+const navStyles = {
+    backgroundColor: '#F6FBFE',
+    fontWeight: '500',
+}
+
 class NavBar extends Component {
     constructor(props) {
         super(props);
@@ -40,11 +45,11 @@ class NavBar extends Component {
 
     render () {
         return (
-            <Navbar bg='light' variant='light' expand='lg'>
-                <Navbar.Brand href="/">Lab Rescue</Navbar.Brand>
+            <Navbar expand='lg' style={navStyles}>
+                <Navbar.Brand href="/" style={{color: '#5C5E60'}}>The Lab Rescue</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto">
+                    <Nav className="ml-auto" style={{color: '#5C5E60'}}>
                         <Nav.Link href="#">Dogs</Nav.Link>
                         <Nav.Link href="#">Breeds</Nav.Link>
                         <Nav.Link href="#">FAQs</Nav.Link>
