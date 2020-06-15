@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import Card from 'react-bootstrap/Card';
-import CardColumns from 'react-bootstrap/CardColumns';
+import CardDeck from 'react-bootstrap/CardDeck';
 import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 class App extends Component {
   constructor(props) {
@@ -32,11 +34,13 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <h1>Dogs</h1>
-        <CardColumns>
+        <h1 class='mb-2'>Dogs</h1>
+        <CardDeck className="d-inline-block" style={{flexDirection: 'row', justifyContent: 'center'}}>
+          <Row className="align-content-center align-items-center flex-wrap justify-content-center">
           {this.state.dogs.map(dog => {
             return (
-              <Card key={dog.id}>
+              <Col xs={12} sm={6} md={6} lg={4}>
+              <Card key={dog.id} className="mx-auto d-block mb-3 mt-3" style={{width: '18em', flex: 1}}>
                 <Card.Img variant="top" src={dog.image} />
                 <Card.Body>
                   <Card.Title>{dog.name} - {dog.breed}</Card.Title>
@@ -48,9 +52,11 @@ class App extends Component {
                   <small className="text-muted">Uploaded on: {dog.uploaded_date}</small>
                 </Card.Footer>
               </Card>
+            </Col>
             );
           })}
-        </CardColumns>
+          </Row>
+        </CardDeck>
       </Container>
     )
   }
