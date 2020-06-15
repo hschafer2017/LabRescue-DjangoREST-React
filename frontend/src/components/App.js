@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import Card from 'react-bootstrap/Card';
+import CardColumns from 'react-bootstrap/CardColumns';
+import Container from 'react-bootstrap/Container';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      breeds: [],
       dogs: [],
       loaded: false,
       placeholder: "Loading"
@@ -13,52 +15,43 @@ class App extends Component {
   }
 
   componentDidMount() {
-    Promise.all([
-      fetch("api/breed"),
-      fetch("api/dog")
-    ])
-    .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-    .then(([data1, data2]) => this.setState({
-        breeds: data1, 
-        dogs: data2
-    }));
-
+    fetch("api/dog")
+    .then(response => {
+      if (response.status > 400) {
+        return response;
+      };
+      return response.json();
+      })
+    .then(allDogs => {
+      this.setState({
+        dogs: allDogs
+      })
+    });
   }
 
   render() {
     return (
-      <ul>
-        {this.state.breeds.map(breed => {
-          return (
-            <li key={breed.id}>
-              {breed.breed_name} - {breed.description}. {breed.history}.  
-              The average height is {breed.avg_height}. The most common colors are {breed.colors.map(color => {
-                return (
-                  <span key={color.id}>
-                  {color}, 
-                  </span>
-                );
-              })}.
-            </li>
-          );
-        })}
-        {this.state.dogs.map(dog => {
-          return (
-            <li key={dog.id}>
-              {dog.name} - {dog.breed}. {dog.description}.
-                Gender: {dog.gender}. Colors: {dog.colors.map(color => {
-                  return (
-                    <span key={color.id}>
-                    {color}, 
-                    </span>
-                );
-              })}.
-              Spayed: {dog.spayed_neutered}.
-              <img src={dog.image} width="184" height="75" alt="Dog"/>
-            </li>
-          );
-        })}
-      </ul>
+      <Container>
+        <h1>Dogs</h1>
+        <CardColumns>
+          {this.state.dogs.map(dog => {
+            return (
+              <Card key={dog.id}>
+                <Card.Img variant="top" src={dog.image} />
+                <Card.Body>
+                  <Card.Title>{dog.name} - {dog.breed}</Card.Title>
+                  <Card.Text>
+                    {dog.description}
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">Uploaded on: {dog.uploaded_date}</small>
+                </Card.Footer>
+              </Card>
+            );
+          })}
+        </CardColumns>
+      </Container>
     )
   }
 }

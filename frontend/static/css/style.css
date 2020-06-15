@@ -2,3 +2,18 @@ body {
     color: '#5C5E60';
     font-family: 'Public Sans', sans-serif;
 }
+
+#navbar {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+#jumbotron h1 {
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 3em;
+}
+
+#jumbotron p {
+    font-size: 1.65em;
+}

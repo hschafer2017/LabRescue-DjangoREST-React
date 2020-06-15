@@ -22,7 +22,7 @@ class HomeJumbotron extends Component {
             <Container>
                 <h1 style={{fontWeight: '700'}}>The Lab Rescue</h1>
                 <p style={{fontWeight: '500'}}>
-                See Dogs. Ask Questions. Get Educated.
+                See Dogs. Ask Questions. Be Educated.
                 </p>
             </Container>
             </Jumbotron>
