@@ -34,7 +34,7 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <h1 class='mb-2'>Dogs</h1>
+        <h1 className='mb-2'>Dogs</h1>
         <CardDeck className="d-inline-block" style={{flexDirection: 'row', justifyContent: 'center'}}>
           <Row className="align-content-center align-items-center flex-wrap justify-content-center">
           {this.state.dogs.map(dog => {

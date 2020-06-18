@@ -3,4 +3,5 @@ import ReactDOM from 'react-dom';
 
 import App from "./components/App";
 import NavBar from "./components/navBar";
-import HomeJumbotron from "./components/jumbotron"
+import HomeJumbotron from "./components/jumbotron";
+import QuestionAccordion from "./components/accordion";
