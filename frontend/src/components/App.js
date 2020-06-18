@@ -37,10 +37,10 @@ class App extends Component {
         <h1 className='mb-2'>Dogs</h1>
         <CardDeck className="d-inline-block" style={{flexDirection: 'row', justifyContent: 'center'}}>
           <Row className="align-content-center align-items-center flex-wrap justify-content-center">
-          {this.state.dogs.map(dog => {
+          {this.state.dogs.map((dog, index) => {
             return (
-              <Col xs={12} sm={6} md={6} lg={4}>
-              <Card key={dog.id} className="mx-auto d-block mb-3 mt-3" style={{width: '18em', flex: 1}}>
+              <Col key={index} xs={12} sm={6} md={6} lg={4}>
+              <Card key={index} className="mx-auto d-block mb-3 mt-3" style={{width: '18em', flex: 1}}>
                 <Card.Img variant="top" src={dog.image} />
                 <Card.Body>
                   <Card.Title>{dog.name} - {dog.breed}</Card.Title>
