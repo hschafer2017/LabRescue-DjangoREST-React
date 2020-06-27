@@ -2,6 +2,10 @@ body {
     color: #5C5E60;
     background-color:  #fafafa;
     font-family: 'Public Sans', sans-serif;
+    position: relative;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #navbar {
@@ -17,4 +21,9 @@ body {
 
 #jumbotron p {
     font-size: 1.65em;
+}
+
+footer {
+    bottom: 0;
+    height: 7em;
 }
