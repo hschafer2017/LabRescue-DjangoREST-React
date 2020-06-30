@@ -28,3 +28,15 @@ footer {
     height: 9em;
     background-color: #F6FBFE;
 }
+
+svg.svg-inline--fa.fa-facebook-f.fa-w-10.mr-2 {
+    margin-left: 0.65rem;
+}
+
+svg.svg-inline--fa.fa-instagram.fa-w-14.fa-sm.mr-2 {
+    margin-left: 0.57rem;
+}
+
+svg.svg-inline--fa.fa-envelope.fa-w-16.fa-sm.mr-2 {
+    margin-left: 0.48rem;
+}

@@ -17,11 +17,11 @@ class Footer extends Component {
                     <Col xs={{ span: 12}} sm={{span: 10, offset: 2}} md={{ span: 6, offset: 3 }} lg={{span:4, offset: 4}}>
                     <span className="fa-layers fa-2x mx-3">
                         <FontAwesomeIcon icon={faCircle} size="lg" style={{color: '#5C5E60'}} />
-                        <FontAwesomeIcon style={{color: '#fafafa'}}  icon={faFacebookF} className="mx-2" />
+                        <FontAwesomeIcon style={{color: '#fafafa'}}  icon={faFacebookF} className="mr-2" />
                     </span>
                     <span className="fa-layers fa-2x mx-3">
                         <FontAwesomeIcon icon={faCircle} size='lg' style={{color: '#5C5E60'}} />
-                        <FontAwesomeIcon style={{color: '#fafafa'}} size='sm' icon={faInstagram} className="mx-2"/>
+                        <FontAwesomeIcon style={{color: '#fafafa'}} size='sm' icon={faInstagram} className="mr-2"/>
                     </span>
                     <span className="fa-layers fa-2x mx-3">
                         <FontAwesomeIcon icon={faCircle} size='lg' style={{color: '#5C5E60'}} />
@@ -29,7 +29,7 @@ class Footer extends Component {
                     </span>
                     <span className="fa-layers fa-2x mx-3">
                         <FontAwesomeIcon icon={faCircle} size='lg' style={{color: '#5C5E60'}} />
-                        <FontAwesomeIcon style={{color: '#fafafa'}} size='sm' icon={faEnvelope} className="mx-2"/>
+                        <FontAwesomeIcon style={{color: '#fafafa'}} size='sm' icon={faEnvelope} className="mr-2"/>
                     </span>
                     </Col>
                 </Row>
