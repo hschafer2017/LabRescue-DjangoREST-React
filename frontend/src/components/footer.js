@@ -13,7 +13,7 @@ class Footer extends Component {
             <footer className="mt-4 w-100 text-center pt-3">
                 <h5 className="font-weight-bold">The Lab Rescue</h5>
                 <p>See Dogs. Ask Questions. Be Educated.</p>
-                <Row>
+                <Row className='w-100 m-0'>
                     <Col xs={{ span: 12}} sm={{span: 10, offset: 2}} md={{ span: 6, offset: 3 }} lg={{span:4, offset: 4}}>
                     <span className="fa-layers fa-2x mx-3">
                         <FontAwesomeIcon icon={faCircle} size="lg" style={{color: '#5C5E60'}} />
