@@ -47,4 +47,5 @@ class BreedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Breed
         fields = ('breed_name', 'description', 'history', 'origin', 'colors',
-                  'temperament', 'lifespan', 'avg_weight', 'avg_height', 'dogs')
+                  'temperament', 'lifespan', 'avg_weight', 'avg_height', 
+                  'dogs', 'image')

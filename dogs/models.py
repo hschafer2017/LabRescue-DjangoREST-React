@@ -10,6 +10,7 @@ class Breed(models.Model):
     lifespan = models.CharField(max_length=100)
     avg_weight = models.CharField(max_length=100)
     avg_height = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='')
 
     def __str__(self):
         return self.breed_name
