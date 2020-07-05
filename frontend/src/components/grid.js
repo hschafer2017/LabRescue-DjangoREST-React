@@ -3,12 +3,8 @@ import { render } from "react-dom";
 import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Figure from 'react-bootstrap/Figure';
-import FigureImage from 'react-bootstrap/FigureImage';
-import FigureCaption from 'react-bootstrap/FigureCaption';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import Collapse from '../../node_modules/react-bootstrap/Collapse';
 
 
 class PhotoGrid extends Component {
@@ -40,13 +36,15 @@ class PhotoGrid extends Component {
     render () {
         const cols = [...Array(Math.ceil(this.state.breeds.length / 2))]
         const breedcols = cols.map((col, index) => this.state.breeds.slice(index * 2, index * 2 + 2));
-        console.log(breedcols);
         const content = breedcols.map((col, index) => (
             <Col key={index} xs={12} sm={6} md={4} lg={3} className="d-flex flex-column p-0">
                 {col.map(breed =>
                     <div key={breed.id} className='m-2' style={{position: 'relative'}}>
-                        <Image src={breed.image} className='img-fluid'/> 
-                        <h6 style={{position: 'absolute', bottom: '0.5em', left: '1em'}}>{breed.breed_name}</h6>
+                        <Image src={breed.image} className='img-fluid'/>
+                        <div key={breed.id} className='image-title w-100 pt-3' style={{ position: 'absolute', bottom: '0'}}>
+                            <h6 className='ml-3 mb-1 font-italic' style={{color: '#fafafa'}}>{breed.breed_name}</h6>
+                            <p className='ml-3 font-weight-light' style={{color: '#fafafa', fontSize: '0.9em'}}>{breed.description}</p>
+                        </div>
                     </div>
                 )}
             </Col>

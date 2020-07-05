@@ -40,3 +40,7 @@ svg.svg-inline--fa.fa-instagram.fa-w-14.fa-sm.mr-2 {
 svg.svg-inline--fa.fa-envelope.fa-w-16.fa-sm.mr-2 {
     margin-left: 0.48rem;
 }
+
+.image-title {
+    background: linear-gradient(180deg, rgba(60,59,59,0.05) 4%, rgba(60,59,59,0.15) 8%,rgba(60,59,59,0.40) 16%, rgba(60,59,59,0.7040231092436975) 32%, rgba(60,59,59,0.8070203081232493) 50%);
+}
